@@ -20,6 +20,6 @@ first define .env file (write DB_* settings), install composer data then:
 
 default endpoint localhost:8000
 
-open endpoint/table
-
+open GET endpoint/ sample (http://127.0.0.1:8000/)
+and REST API GET endpoint/api/currency (sample: `http://127.0.0.1:8000/api/currency?from=2022-04-20&to=2022-04-23`)
 then will see changes

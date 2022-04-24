@@ -14,7 +14,4 @@ use App\Http\Controllers\CurrencyController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/table',[CurrencyController::class,'index']);
+Route::get('/', [CurrencyController::class,'index']);
