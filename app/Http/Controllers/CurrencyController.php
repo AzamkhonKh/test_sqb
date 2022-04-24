@@ -30,20 +30,17 @@ class CurrencyController extends Controller
     }
 
     public function currency_by_range(rangeRequest $req){
-        $both = false;
         $data = Currency::query();
-        if($req->has('from')){
-            $data = $data->whereDate('when','>=',$req->input('from'));
-            $both = true;
-        }
-        if($req->has('to')){
-            $data = $data->whereDate('when','<=',$req->input('to'));
-            $both = true;
-        }
-        if(!$both){
-            $data = $data->whereDate('when','=',now()->format('Y-m-d'));
-        }
+        $data = $data->whereDate('when','>=',$req->input('from'));
+        $data = $data->whereDate('when','<=',$req->input('to'));
         return response()->json($data->orderBy('сharCode')->get(),201);
+    }
+    public function log_currency_by_range(rangeRequest $req){
+        $cb = new CBrepo();
+        $from = Carbon::createFromFormat('Y-m-d',$req->input('from'));
+        $to = Carbon::createFromFormat('Y-m-d',$req->input('to'));
+        $cb->getCurrencyDateRange($from,$to);
+        return response()->json(true,201);
     }
 
 }

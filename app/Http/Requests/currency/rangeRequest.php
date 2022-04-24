@@ -24,8 +24,8 @@ class rangeRequest extends FormRequest
     public function rules()
     {
         return [
-            'from' => ['date_format:Y-m-d'],
-            'to' => ['date_format:Y-m-d'],
+            'from' => ['required','date_format:Y-m-d'],
+            'to' => ['required','date_format:Y-m-d'],
         ];
     }
 }

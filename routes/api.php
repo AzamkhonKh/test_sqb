@@ -16,3 +16,4 @@ use App\Http\Controllers\CurrencyController;
 
 
 Route::get('/currency',[CurrencyController::class,'currency_by_range']);
+Route::get('/log/currency',[CurrencyController::class,'log_currency_by_range']);
