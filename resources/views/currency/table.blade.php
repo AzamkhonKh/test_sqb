@@ -20,11 +20,13 @@
     </style>
 </head>
 <body>
-    <div class="flex">
-        <input type="date" name="when">
-        <button type="submit">
-            Взять по данной дате
-        </button>
+    <div class="flex" align-content="center">
+        <form action="" name="when_form">
+            <input type="date" name="when" id="when_input">
+            <button type="submit">
+                Взять по данной дате
+            </button>
+        </form>
     </div>
     <table align="center" width="100%" >
         <thead>
@@ -77,4 +79,34 @@
         </tbody>
     </table>
 </body>
+
+<script>
+        function parse_query_string(query) {
+            var vars = query.split("&");
+            var query_string = {};
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                var key = decodeURIComponent(pair.shift());
+                var value = decodeURIComponent(pair.join("="));
+                // If first entry with this name
+                if (typeof query_string[key] === "undefined") {
+                query_string[key] = value;
+                // If second entry with this name
+                } else if (typeof query_string[key] === "string") {
+                var arr = [query_string[key], value];
+                query_string[key] = arr;
+                // If third or later entry with this name
+                } else {
+                query_string[key].push(value);
+                }
+            }
+            return query_string;
+        }
+        var query = window.location.search.substring(1);
+        var qs = parse_query_string(query);
+        if(typeof qs.when === 'string'){
+            var els=document.getElementById('when_input');
+            els.value = qs.when;
+        }
+    </script>
 </html>
