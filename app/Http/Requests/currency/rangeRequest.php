@@ -26,6 +26,7 @@ class rangeRequest extends FormRequest
         return [
             'from' => ['required','date_format:Y-m-d'],
             'to' => ['required','date_format:Y-m-d'],
+            'valuteID' => ['exists:currency,valuteID'],
         ];
     }
 }
