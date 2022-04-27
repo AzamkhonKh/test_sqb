@@ -33,6 +33,9 @@ class CurrencyController extends Controller
         $data = Currency::query();
         $data = $data->whereDate('when','>=',$req->input('from'));
         $data = $data->whereDate('when','<=',$req->input('to'));
+        if($req->has('valuteID')){
+            $data = $data->where('valuteID','=',$req->input('valuteID'));
+        }
         return response()->json($data->orderBy('сharCode')->get(),201);
     }
     public function log_currency_by_range(rangeRequest $req){
